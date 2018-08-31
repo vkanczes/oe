@@ -1,7 +1,5 @@
 # Veronica Kanczes - Assignment 1321
-
 # Part I:
-
 # This program will ask user for temperature in Fahrenheit and convert and print the temperature in celsius
 
 # get the Fahrenheit temp and convert to an integer
@@ -16,8 +14,7 @@ print ("The temperature in Celsius:  ", c)
 
 # Part II
 
-# This program will calculate the area of a trapezoid
-
+# This program will calculate the area of a trapezoid alright
 # get the height, bottom length and top length of the trapezoid
 height = int(input("Enter height of the trapezoid: "))
 bottomLength = int(input("Enter bottom base length of the trapezoid: "))
