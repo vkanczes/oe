@@ -1,5 +1,5 @@
 import turtle
-# what about turtle is is slow
+# the turtle is not slow 
 
 # create my turtle
 tt=turtle.Turtle()
