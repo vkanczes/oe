@@ -85,12 +85,12 @@ counter = 0
 
 # set to have the game be played multiple times
 while counter in range(5):
-    '''Play multiple games and keep score of who wins, 1 - player1 wins, 2 - player2 wins 0-tie'''
+    '''Play multiple games and keep score of who wins, 1 - playerUno wins, 2 - player2 wins 0-tie'''
 
     # get player 1 choice and make sure within guidelines
     player = "Player1"
     p1 = checkInput(player)
-    player1 = p1.lower()
+    playerUno = p1.lower()
 
     # get player 2 choice and make sure within guidlines
     player = "Player2"
