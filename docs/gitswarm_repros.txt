@@ -1,0 +1,42 @@
+1. Reproduction:  Helix Mirroring Disabled
+2. users pushing from Git Fusion
+	Git Fusion:  git@10.5.10.179:gitswarm-vkanczes-dolby 
+	* master                 c4533bb adding m4
+	  remotes/origin/master  c4533bb adding m4
+3. users pushing to GitSwarm
+	Git Swarm:   git@vkanczes-gitswarm.das.perforce.com:vkanczes/dolby.git
+	* master                 e9b1862 adding m2
+	  remotes/origin/master  e9b1862 adding m2
+	
+4. re-enabling mirroring
+	Error message:
+	To git@10.5.10.179:gitswarm-vkanczes-dolby
+	! [rejected]        e9b18625fc52d31c460b9cf096b7c8615c9636c4 -> master (non-fast-forward)
+	error: failed to push some refs to 'git@10.5.10.179:gitswarm-vkanczes-dolby'
+	hint: Updates were rejected because a pushed branch tip is behind its remote
+	hint: counterpart. Check out this branch and integrate the remote changes
+	hint: (e.g. 'git pull ...') before pushing again.
+	hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+5. Which is correct, which do you keep?
+GS - run git log
+	* e9b1862 - (a5a5f35) - (12 minutes ago) adding m2 - Veronica Kanczes (HEAD -> master, origin/master)
+	* a5a5f35 - (b893686) - (12 minutes ago) adding m1 - Veronica Kanczes
+	| * e232ef0 - (5cd1cfb) - (20 minutes ago) adding new patch fix - Veronica Kanczes (origin/dev)
+	| * 5cd1cfb - (734ab48) - (22 minutes ago) updating the release notes - Veronica Kanczes
+	| *   734ab48 - (ed53514 4e08237) - (24 minutes ago) adding the correct release notes - Veronica Kanczes (origin/r3.0)
+
+GF - run git log
+	* c4533bb - (a028918) - (8 minutes ago) adding m4 - Veronica Kanczes (HEAD -> master, origin/master, origin/HEAD)
+	* a028918 - (b893686) - (9 minutes ago) adding m3 - Veronica Kanczes
+	| * e232ef0 - (5cd1cfb) - (20 minutes ago) adding new patch fix - Veronica Kanczes (origin/dev)
+	| * 5cd1cfb - (734ab48) - (22 minutes ago) updating the release notes - Veronica Kanczes
+	| *   734ab48 - (ed53514 4e08237) - (24 minutes ago) adding the correct release notes - Veronica Kanczes (origin/r3.0)
+	
+To fix in Git Fusion:
+1. gitlog_annotate_with_changenum.py --repo gitswarm-vkanczes-dolby
+2. determine the correct changelist:  74679 from commit:  e232ef0
+3. /opt/gitswarm/embedded/bin/git update-ref refs/heads/master e232ef0
+4. p4gf_rollback.py --change-num 74679 --repo gitswarm-vkanczes-dolby --obliterate
+
+
